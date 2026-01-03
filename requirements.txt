@@ -1,0 +1,5 @@
+from_root
+python-dotenv
+pymongo
+scikit-learn
+dill
