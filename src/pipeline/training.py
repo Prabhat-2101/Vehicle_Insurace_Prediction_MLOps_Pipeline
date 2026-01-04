@@ -4,6 +4,7 @@ from src.utils.logger import logging
 from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
 from src.components.data_transformation import DataTransformation
+from src.components.model_training import ModelTraining
 
 class TrainPipeline:
     def __init__(self):
@@ -24,6 +25,11 @@ class TrainPipeline:
                 data_ingestion_artifact=data_ingestion_artifact
             )
             data_transform_artifact = data_transform.run()
+            model_trainer = ModelTraining(
+                data_ingestion_artifact=data_ingestion_artifact,
+                data_transformation_artifact=data_transform_artifact
+            )
+            model_trainer_artifact = model_trainer.run()
             logging.info("Training pipeline completed successfully.")
         except Exception as e:
             logging.error(f"Error in training pipeline: {e}")

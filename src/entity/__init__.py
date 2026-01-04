@@ -4,7 +4,6 @@ class DataIngestionArtifact:
         self.train_file_path = train_file_path
         self.test_file_path = test_file_path
 
-
 class DataValidationArtifact:
     def __init__(self, status:bool, message: str, report_file_path: str):
         self.validation_status = status
@@ -16,3 +15,8 @@ class DataTransformationArtifact:
         self.transformed_train_file_path = transformed_train_file_path
         self.transformed_test_file_path = transformed_test_file_path
         self.preprocessed_object_file_path = preprocessed_object_file_path
+
+class ModelTrainingArtifact:
+    def __init__(self, model_file_path: str, metrics_file_path: str):
+        self.model_file_path = model_file_path
+        self.metrics_file_path = metrics_file_path

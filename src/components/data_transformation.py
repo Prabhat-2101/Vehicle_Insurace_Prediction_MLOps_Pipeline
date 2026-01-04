@@ -16,6 +16,9 @@ load_dotenv()
 
 class DataTransformation:
     def __init__(self, data_ingestion_artifact: DataIngestionArtifact):
+        """
+        DataTransformation class initialized successfully.
+        """
         try:
             self.data_ingestion_artifact = data_ingestion_artifact
             self.target_column = os.getenv('TARGET_COLUMN')
