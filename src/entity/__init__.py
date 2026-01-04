@@ -10,3 +10,9 @@ class DataValidationArtifact:
         self.validation_status = status
         self.debug_message = message
         self.report_file_path = report_file_path
+
+class DataTransformationArtifact:
+    def __init__(self, transformed_train_file_path: str, transformed_test_file_path: str, preprocessed_object_file_path: str):
+        self.transformed_train_file_path = transformed_train_file_path
+        self.transformed_test_file_path = transformed_test_file_path
+        self.preprocessed_object_file_path = preprocessed_object_file_path

@@ -13,6 +13,7 @@ columns:
   - Response: int
 
 
+# Used during data transformation
 numerical_columns:
   - Age
   - Driving_License
@@ -28,10 +29,9 @@ categorical_columns:
   - Vehicle_Age
   - Vehicle_Damage
 
-drop_columns: _id
+drop_columns: id
 
-# Features for data transformation
-num_features:
+num_columns:
   - Age
   - Vintage
 

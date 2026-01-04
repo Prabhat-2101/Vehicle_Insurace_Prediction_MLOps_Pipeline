@@ -1,0 +1,15 @@
+transformed_columns:
+- num__Age
+- num__Vintage
+- mm__Annual_Premium
+- cat__Gender_Female
+- cat__Gender_Male
+- cat__Vehicle_Age_1-2 Year
+- cat__Vehicle_Age_< 1 Year
+- cat__Vehicle_Age_> 2 Years
+- cat__Vehicle_Damage_No
+- cat__Vehicle_Damage_Yes
+- remainder__Driving_License
+- remainder__Region_Code
+- remainder__Previously_Insured
+- remainder__Policy_Sales_Channel
