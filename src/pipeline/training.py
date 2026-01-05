@@ -5,6 +5,8 @@ from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
 from src.components.data_transformation import DataTransformation
 from src.components.model_training import ModelTraining
+from src.components.model_evaluation import ModelEvaluation
+from src.components.model_pusher import ModelPusher
 
 class TrainPipeline:
     def __init__(self):
@@ -30,6 +32,15 @@ class TrainPipeline:
                 data_transformation_artifact=data_transform_artifact
             )
             model_trainer_artifact = model_trainer.run()
+            model_evaluation = ModelEvaluation()
+            model_eval_artifact = model_evaluation.run(
+                model_trainer_artifact
+            )
+            if model_eval_artifact.push_model:
+                model_pusher = ModelPusher()
+                model_pusher.run(model_eval_artifact,data_transform_artifact, model_trainer_artifact)
+                logging.info("New model accepted and pushed to production.")
+
             logging.info("Training pipeline completed successfully.")
         except Exception as e:
             logging.error(f"Error in training pipeline: {e}")

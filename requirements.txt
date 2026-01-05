@@ -5,3 +5,5 @@ scikit-learn
 dill
 joblib
 imblearn
+boto3
+awscli
