@@ -18,7 +18,8 @@ class ModelEvaluation:
     def __init__(self):
         self.s3 = S3Operations()
         self.metric_name = os.getenv("PRIMARY_METRIC")
-        self.production_metric_key = "models/production/metrics.yaml"
+        self.model_name = os.getenv("MODEL_NAME")
+        self.production_metric_key = f"models/registry/{self.model_name}/production/metrics.yaml"
 
     def run(
         self,
@@ -43,7 +44,7 @@ class ModelEvaluation:
                     best_model_metric=current_score
                 )
 
-            prod_metrics = self.s3.read_yaml_file(self.production_metric_key)
+            prod_metrics = self.s3.load_metrics_from_s3(self.s3.bucket, self.production_metric_key)
             prod_score = prod_metrics[self.metric_name]
 
             logging.info(f"Production model {self.metric_name}: {prod_score}")

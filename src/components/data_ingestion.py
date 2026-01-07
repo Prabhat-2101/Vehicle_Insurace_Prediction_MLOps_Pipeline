@@ -33,7 +33,7 @@ class DataIngestion:
             client = connect_to_mongo()
             db = client[self.db_name]
             collection = db[self.collection_name]
-            data = list(collection.find({},{'_id': 0}).limit(100))
+            data = list(collection.find({},{'_id': 0}))
             df = pd.DataFrame(data)
 
             os.makedirs(self.artifacts_dir, exist_ok=True)
