@@ -7,3 +7,5 @@ joblib
 imblearn
 boto3
 awscli
+streamlit
+fastapi
