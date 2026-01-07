@@ -1,5 +1,5 @@
 import boto3
-import os
+import os, yaml
 from botocore.exceptions import ClientError
 from .exception_handler import MyException
 from dotenv import load_dotenv
@@ -43,3 +43,14 @@ class S3Operations:
 
     def download_file(self, s3_key: str, local_path: str):
         self.s3.download_file(self.bucket, s3_key, local_path)
+
+    def load_metrics_from_s3(self,bucket, key):
+        s3 = boto3.client("s3")
+
+        obj = s3.get_object(
+            Bucket=bucket,
+            Key=key
+        )
+
+        content = obj["Body"].read()
+        return yaml.safe_load(content)
