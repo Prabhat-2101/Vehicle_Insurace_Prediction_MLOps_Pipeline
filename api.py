@@ -7,10 +7,8 @@ app = FastAPI(
     version="1.0"
 )
 
-predictor = PredictionPipeline()
-
-
 @app.post("/predict", response_model=PredictionResponse)
 def predict(data: InsuranceInput):
+    predictor = PredictionPipeline()
     result = predictor.predict(data.dict())
     return result

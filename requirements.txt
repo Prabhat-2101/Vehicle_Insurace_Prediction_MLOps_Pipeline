@@ -9,3 +9,4 @@ boto3
 awscli
 streamlit
 fastapi
+uvicorn
