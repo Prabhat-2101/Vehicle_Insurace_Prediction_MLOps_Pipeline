@@ -17,7 +17,13 @@ jobs:
         run:  echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t prabhat2101/vehicle-insurance-predictor:latest .
+        run: |
+          docker build \
+            -t prabhat2101/vehicle-insurance-predictor:${{ github.sha::7 }} \
+            -t prabhat2101/vehicle-insurance-predictor:latest \
+            .
 
-      - name: Push Docker image to Docker Hub
-        run: docker push prabhat2101/vehicle-insurance-predictor:latest
+      - name: Push Docker images
+        run: |
+          docker push prabhat2101/vehicle-insurance-predictor:${{ github.sha::7 }}
+          docker push prabhat2101/vehicle-insurance-predictor:latest
