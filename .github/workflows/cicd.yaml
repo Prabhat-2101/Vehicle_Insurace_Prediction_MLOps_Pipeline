@@ -10,20 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Login to Docker Hub
-        run:  echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Set short SHA
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Build Docker image
         run: |
           docker build \
-            -t prabhat2101/vehicle-insurance-predictor:${{ github.sha::7 }} \
+            -t prabhat2101/vehicle-insurance-predictor:$SHORT_SHA \
             -t prabhat2101/vehicle-insurance-predictor:latest \
             .
 
       - name: Push Docker images
         run: |
-          docker push prabhat2101/vehicle-insurance-predictor:${{ github.sha::7 }}
+          docker push prabhat2101/vehicle-insurance-predictor:$SHORT_SHA
           docker push prabhat2101/vehicle-insurance-predictor:latest
