@@ -3,7 +3,7 @@ name: Vehicle-insurance-predictor-pipeline
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   integration:
