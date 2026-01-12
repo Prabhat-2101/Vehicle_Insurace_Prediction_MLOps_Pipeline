@@ -7,7 +7,7 @@ import numpy as np
 import requests
 
 st.title("Vehicle Insurance Prediction")
-st.write("This is a demo application for Vehicle Insurance Prediction.")
+st.write("Demo application for Vehicle Insurance Prediction.")
 st.set_page_config(layout="wide")
 API_URL = "http://localhost:8000/predict"
 
