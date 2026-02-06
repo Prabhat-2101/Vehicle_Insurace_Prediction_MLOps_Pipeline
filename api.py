@@ -12,3 +12,7 @@ def predict(data: InsuranceInput):
     predictor = PredictionPipeline()
     result = predictor.predict(data.dict())
     return result
+
+@app.get("/")
+def say_hello():
+    return {"message": "Hello, the FastAPI server is running"}
